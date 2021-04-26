@@ -1,4 +1,6 @@
-filterEndPoint(inputStr : string)
+export class filter {
+
+    public filterEndPoint(inputStr : string)
 {
     let url = new URL('https://api.publicapis.org/categories');
     let headers = {
@@ -10,4 +12,5 @@ filterEndPoint(inputStr : string)
         })
         
     })   
+}
 }
