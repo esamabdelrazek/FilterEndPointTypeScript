@@ -1,11 +1,13 @@
-const url = new URL('https://api.publicapis.org/categories');
-const headers = {
-    'Accept': '*'
-};
-const inputStr = "An";
-(async function () {
-    debugger;
-  const response = await fetch( url.toString(), {headers} );
-  const data = await response.json();
-  console.log(data.filter(f=>f.startsWith(inputStr)))
-})()
+filterEndPoint(inputStr : string)
+{
+    let url = new URL('https://api.publicapis.org/categories');
+    let headers = {
+        'Accept': '*'
+    };
+    fetch(url.toString(), { headers }).then(response => {
+        response.json().then(jsonRes => {
+            console.log(jsonRes.filter((f: any) => { f.startsWith(inputStr) }));
+        })
+        
+    })   
+}
