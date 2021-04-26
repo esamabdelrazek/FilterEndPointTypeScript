@@ -14,12 +14,18 @@ export class AppComponent {
   }
 
   filterEndPoint(inputStr : string){
-    debugger
-    this.http.get("https://api.publicapis.org/categories",{ headers:new HttpHeaders({  'Accept': '*' })}).subscribe(
-      (result : any) =>{
-        this.res  = (result as string[]).filter(f=>f.startsWith(inputStr))
-        console.log(this.res);
-      }
-    )
+    const url = new URL('https://api.publicapis.org/categories');
+
+    const headers = {
+        'Accept': '*'
+    };
+    
+    (async function () {
+        debugger;
+      const response = await fetch( url.toString(), {headers} );
+      const data = await response.json();
+      console.log(data.filter(f=>f.startsWith(inputStr)));
+      this.res  = data.filter(f=>f.startsWith(inputStr));
+    })()
   }
 }
